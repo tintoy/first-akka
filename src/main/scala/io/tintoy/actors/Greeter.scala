@@ -6,7 +6,6 @@ import akka.actor.Actor
  * Messages used by the Greet actor.
  */
 object Greeter {
-
 	/**
 	 * Request a greeting from the greeter.
 	 */
