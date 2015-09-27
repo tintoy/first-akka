@@ -7,8 +7,11 @@ import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Terminated
 
-import io.tintoy.actors.HelloWorld
+import io.tintoy.actors.{Terminator, HelloWorld}
 
+/**
+ * My first native (Scala-based) Akka application.
+ */
 object FirstAkkaApp extends App {
 	val system = ActorSystem.create("FirstAkkaApp")
 	var helloWorld = system.actorOf(
@@ -26,12 +29,3 @@ object FirstAkkaApp extends App {
 	)
 }
 
-class Terminator(ref: ActorRef) extends Actor with ActorLogging {
-	context watch ref
-
-	def receive = {
-		case Terminated(_) =>
-			log.info("{} has terminated, shutting down system...", ref.path)
-			context.system.shutdown()
-	}
-}
