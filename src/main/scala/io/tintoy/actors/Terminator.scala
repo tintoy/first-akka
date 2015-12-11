@@ -7,7 +7,7 @@ import akka.actor._
  * @param triggerActor The actor whose termination should trigger system shutdown.
  */
 class Terminator(triggerActor: ActorRef) extends Actor with ActorLogging {
-	context watch triggerActor
+	context.watch(triggerActor)
 
 	/**
 	 * Called when the actor receives a message.
